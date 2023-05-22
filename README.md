@@ -1,1 +1,1 @@
-Thats my first try on Rock-Paper-Scissor
+Thats my first try on Rock-Paper-Scissor!
