@@ -17,24 +17,53 @@ function PlayRound() {
   let computerSelect = computerPlay();
 
   if (computerSelect === "Schere" && playerSelection === "Schere") {
-    document.write("Es ist ein Unentschieden");
+    console.log("Es ist ein Unentschieden");
+    return 0;
   } else if (computerSelect === "Schere" && playerSelection === "Stein") {
-    document.write("Du gewinnst! - Stein schlägt Schere");
+    console.log("Du gewinnst! - Stein schlägt Schere");
+    return 1;
   } else if (computerSelect === "Schere" && playerSelection === "Papier") {
-    document.write("Du verlierst! - Schere schlägt Papier");
+    console.log("Du verlierst! - Schere schlägt Papier");
+    return 2;
   } else if (computerSelect === "Stein" && playerSelection === "Stein") {
-    document.write("Es ist ein Unentschieden");
+    console.log("Es ist ein Unentschieden");
+    return 0;
   } else if (computerSelect === "Stein" && playerSelection === "Schere") {
-    document.write("Du verlierst! - Stein schlägt Schere");
+    console.log("Du verlierst! - Stein schlägt Schere");
+    return 2;
   } else if (computerSelect === "Stein" && playerSelection === "Papier") {
-    document.write("Du gewinnst! - Papier schlägt Stein");
+    console.log("Du gewinnst! - Papier schlägt Stein");
+    return 1;
   } else if (computerSelect === "Papier" && playerSelection === "Stein") {
-    document.write("Du verlierst! - Papier schlägt Stein");
+    console.log("Du verlierst! - Papier schlägt Stein");
+    return 2;
   } else if (computerSelect === "Papier" && playerSelection === "Papier") {
-    document.write("Es ist ein Unentschieden");
+    console.log("Es ist ein Unentschieden");
+    return 0;
   } else if (computerSelect === "Papier" && playerSelection === "Schere") {
-    document.write("Du gewinnst! - Schere schlägt Papier");
+    console.log("Du gewinnst! - Schere schlägt Papier");
+    return 1;
   }
 }
 
-function game() {}
+function game() {
+  let zaehlerPlayer = 0;
+  let zaehlerComputer = 0;
+  for (i = 0; i < 5; i++) {
+    let ergebnis = PlayRound();
+    if (ergebnis === 0) {
+      console.log("Niemand kriegt ein Punkt, da es ein unentschieden ist");
+    } else if (ergebnis === 1) {
+      ++zaehlerPlayer;
+    } else if (ergebnis === 2) {
+      ++zaehlerComputer;
+    }
+  }
+  if (zaehlerPlayer > zaehlerComputer) {
+    console.log("Du hast gewonnen");
+  } else if (zaehlerPlayer < zaehlerComputer) {
+    console.log("Du hast verloren");
+  } else if (zaehlerPlayer == zaehlerComputer) {
+    console.log("Es ist ein unentschieden");
+  }
+}
