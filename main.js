@@ -49,7 +49,7 @@ function PlayRound() {
 function game() {
   let zaehlerPlayer = 0;
   let zaehlerComputer = 0;
-  while (zaehlerComputer < 5 || zaehlerPlayer < 5) {
+  while (zaehlerComputer < 5 && zaehlerPlayer < 5) {
     let ergebnis = PlayRound();
     if (ergebnis === 0) {
       console.log("Niemand kriegt ein Punkt, da es ein unentschieden ist");
@@ -63,7 +63,5 @@ function game() {
     console.log("Du hast gewonnen");
   } else if (zaehlerPlayer < zaehlerComputer) {
     console.log("Du hast verloren");
-  } else if (zaehlerPlayer == zaehlerComputer) {
-    console.log("Es ist ein unentschieden");
   }
 }
