@@ -1,3 +1,21 @@
+function init() {
+  const symbols = document.querySelectorAll(".symbol");
+
+  for (let i = 0; i < symbols.length; i++) {
+    symbols[i].addEventListener("click", myFunc);
+  }
+
+  function myFunc(event) {
+    if (event.target.id === "paper") {
+      PlayRound("papier");
+    } else if (event.target.id === "rock") {
+      PlayRound("stein");
+    } else if (event.target.id === "scissor") {
+      PlayRound("schere");
+    }
+  }
+}
+
 function computerPlay() {
   const eingabe = Math.floor(Math.random() * 3) + 1;
 
@@ -10,58 +28,73 @@ function computerPlay() {
   }
 }
 
-function PlayRound() {
-  let playerSelection = prompt(
-    "Bitte geben Sie Schere, Stein oder Papier ein: "
-  ).toLowerCase();
+let zaehlerPlayer = 0;
+let zaehlerComputer = 0;
+
+function PlayRound(playerSelection) {
   let computerSelect = computerPlay();
 
   if (computerSelect === "Schere" && playerSelection === "schere") {
-    console.log("Es ist ein Unentschieden");
-    return 0;
+    document.getElementById("resultText").textContent =
+      "Es ist ein Unentschieden";
   } else if (computerSelect === "Schere" && playerSelection === "stein") {
-    console.log("Du gewinnst! - Stein schlägt Schere");
-    return 1;
+    document.getElementById("resultText").textContent =
+      "Du gewinnst! - Stein schlägt Schere";
+    ++zaehlerPlayer;
+    document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
   } else if (computerSelect === "Schere" && playerSelection === "papier") {
-    console.log("Du verlierst! - Schere schlägt Papier");
-    return 2;
+    document.getElementById("resultText").textContent =
+      "Du verlierst! - Schere schlägt Papier";
+    ++zaehlerComputer;
+    document.getElementById("pointsCpu").textContent = zaehlerComputer;
   } else if (computerSelect === "Stein" && playerSelection === "stein") {
-    console.log("Es ist ein Unentschieden");
-    return 0;
+    document.getElementById("resultText").textContent =
+      "Es ist ein Unentschieden";
   } else if (computerSelect === "Stein" && playerSelection === "schere") {
-    console.log("Du verlierst! - Stein schlägt Schere");
-    return 2;
+    document.getElementById("resultText").textContent =
+      "Du verlierst! - Stein schlägt Schere";
+    ++zaehlerComputer;
+    document.getElementById("pointsCpu").textContent = zaehlerComputer;
   } else if (computerSelect === "Stein" && playerSelection === "papier") {
-    console.log("Du gewinnst! - Papier schlägt Stein");
-    return 1;
+    document.getElementById("resultText").textContent =
+      "Du gewinnst! - Papier schlägt Stein";
+    ++zaehlerPlayer;
+    document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
   } else if (computerSelect === "Papier" && playerSelection === "stein") {
-    console.log("Du verlierst! - Papier schlägt Stein");
-    return 2;
+    document.getElementById("resultText").textContent =
+      "Du verlierst! - Papier schlägt Stein";
+    ++zaehlerComputer;
+    document.getElementById("pointsCpu").textContent = zaehlerComputer;
   } else if (computerSelect === "Papier" && playerSelection === "papier") {
-    console.log("Es ist ein Unentschieden");
-    return 0;
+    document.getElementById("resultText").textContent =
+      "Es ist ein Unentschieden";
   } else if (computerSelect === "Papier" && playerSelection === "schere") {
-    console.log("Du gewinnst! - Schere schlägt Papier");
-    return 1;
+    document.getElementById("resultText").textContent =
+      "Du gewinnst! - Schere schlägt Papier";
+    ++zaehlerPlayer;
+    document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
+  }
+
+  if (zaehlerPlayer === 5) {
+    document.getElementById("resultText").textContent = "Du hast gewonnen";
+  } else if (zaehlerComputer === 5) {
+    document.getElementById("resultText").textContent = "Du hast verloren";
   }
 }
 
-function game() {
-  let zaehlerPlayer = 0;
-  let zaehlerComputer = 0;
-  while (zaehlerComputer < 5 && zaehlerPlayer < 5) {
-    let ergebnis = PlayRound();
-    if (ergebnis === 0) {
-      console.log("Niemand kriegt ein Punkt, da es ein unentschieden ist");
-    } else if (ergebnis === 1) {
-      ++zaehlerPlayer;
-    } else if (ergebnis === 2) {
-      ++zaehlerComputer;
-    }
-  }
-  if (zaehlerPlayer > zaehlerComputer) {
-    console.log("Du hast gewonnen");
-  } else if (zaehlerPlayer < zaehlerComputer) {
-    console.log("Du hast verloren");
-  }
+const reset = document.getElementById("reset");
+
+reset.addEventListener("click", resetFunc());
+
+function resetFunc() {
+  zaehlerPlayer = 0;
+
+  zaehlerComputer = 0;
+
+  document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
+  document.getElementById("pointsCpu").textContent = zaehlerComputer;
+  document.getElementById("resultText").textContent =
+    "Wählen Sie ein Symbol um zu beginnen";
 }
+
+init();

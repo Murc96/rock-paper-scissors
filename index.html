@@ -5,7 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="main.js" defer></script>
+    <script src="https://kit.fontawesome.com/7c1106c071.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <title>Rock-Paper-Scissor</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Rock - Paper - Scissor</h1>
+    </header>
+
+    <div class="count">
+      <div class="player">Player</div>
+      <div id="pointsPlayer">0</div>
+      <div class="cpu">Computer</div>
+      <div id="pointsCpu">0</div>
+    </div>
+
+    <div class="choice">
+      <i class="symbol fa-regular fa-hand-back-fist" id="rock"></i>
+      <i class="symbol fa-regular fa-hand" id="paper"></i>
+      <i class="symbol fa-regular fa-hand-scissors" id="scissor"></i>
+    </div>
+
+    <div class="result">
+      <div id="resultText">Wählen Sie ein Symbol um zu beginnen</div>
+    </div>
+    <div id="button">
+      <button id="reset">Reset</button>
+    </div>
+  </body>
 </html>
