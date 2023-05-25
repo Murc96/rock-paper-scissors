@@ -20,11 +20,11 @@ function computerPlay() {
   const eingabe = Math.floor(Math.random() * 3) + 1;
 
   if (eingabe === 1) {
-    return "Schere";
+    return "schere";
   } else if (eingabe === 2) {
-    return "Stein";
+    return "stein";
   } else {
-    return "Papier";
+    return "papier";
   }
 }
 
@@ -36,49 +36,43 @@ function PlayRound(playerSelection) {
 
   let cpuChoiceDiv = document.getElementById("cpuChoice");
 
-  if (computerSelect === "Schere") {
+  if (computerSelect === "schere") {
     cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand-scissors"></i>';
-  } else if (computerSelect === "Stein") {
+  } else if (computerSelect === "stein") {
     cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand-back-fist"></i>';
-  } else if (computerSelect === "Papier") {
+  } else if (computerSelect === "papier") {
     cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand"></i>';
   }
 
-  if (computerSelect === "Schere" && playerSelection === "schere") {
+  if (computerSelect === playerSelection) {
     document.getElementById("resultText").textContent =
       "Es ist ein Unentschieden";
-  } else if (computerSelect === "Schere" && playerSelection === "stein") {
+  } else if (computerSelect === "schere" && playerSelection === "stein") {
     document.getElementById("resultText").textContent =
       "Du gewinnst! - Stein schlägt Schere";
     ++zaehlerPlayer;
     document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
-  } else if (computerSelect === "Schere" && playerSelection === "papier") {
+  } else if (computerSelect === "schere" && playerSelection === "papier") {
     document.getElementById("resultText").textContent =
       "Du verlierst! - Schere schlägt Papier";
     ++zaehlerComputer;
     document.getElementById("pointsCpu").textContent = zaehlerComputer;
-  } else if (computerSelect === "Stein" && playerSelection === "stein") {
-    document.getElementById("resultText").textContent =
-      "Es ist ein Unentschieden";
-  } else if (computerSelect === "Stein" && playerSelection === "schere") {
+  } else if (computerSelect === "stein" && playerSelection === "schere") {
     document.getElementById("resultText").textContent =
       "Du verlierst! - Stein schlägt Schere";
     ++zaehlerComputer;
     document.getElementById("pointsCpu").textContent = zaehlerComputer;
-  } else if (computerSelect === "Stein" && playerSelection === "papier") {
+  } else if (computerSelect === "stein" && playerSelection === "papier") {
     document.getElementById("resultText").textContent =
       "Du gewinnst! - Papier schlägt Stein";
     ++zaehlerPlayer;
     document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
-  } else if (computerSelect === "Papier" && playerSelection === "stein") {
+  } else if (computerSelect === "papier" && playerSelection === "stein") {
     document.getElementById("resultText").textContent =
       "Du verlierst! - Papier schlägt Stein";
     ++zaehlerComputer;
     document.getElementById("pointsCpu").textContent = zaehlerComputer;
-  } else if (computerSelect === "Papier" && playerSelection === "papier") {
-    document.getElementById("resultText").textContent =
-      "Es ist ein Unentschieden";
-  } else if (computerSelect === "Papier" && playerSelection === "schere") {
+  } else if (computerSelect === "papier" && playerSelection === "schere") {
     document.getElementById("resultText").textContent =
       "Du gewinnst! - Schere schlägt Papier";
     ++zaehlerPlayer;
@@ -86,9 +80,11 @@ function PlayRound(playerSelection) {
   }
 
   if (zaehlerPlayer === 5) {
-    document.getElementById("resultText").textContent = "Du hast gewonnen";
+    document.getElementById("resultText").textContent =
+      "Du hast gewonnen mit " + zaehlerPLayer + " : " + zaehlerComputer;
   } else if (zaehlerComputer === 5) {
-    document.getElementById("resultText").textContent = "Du hast verloren";
+    document.getElementById("resultText").textContent =
+      "Du hast verloren mit " + zaehlerComputer + " : " + zaehlerPlayer;
   }
 }
 
