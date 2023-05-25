@@ -34,6 +34,16 @@ let zaehlerComputer = 0;
 function PlayRound(playerSelection) {
   let computerSelect = computerPlay();
 
+  let cpuChoiceDiv = document.getElementById("cpuChoice");
+
+  if (computerSelect === "Schere") {
+    cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand-scissors"></i>';
+  } else if (computerSelect === "Stein") {
+    cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand-back-fist"></i>';
+  } else if (computerSelect === "Papier") {
+    cpuChoiceDiv.innerHTML = '<i class="fa-regular fa-hand"></i>';
+  }
+
   if (computerSelect === "Schere" && playerSelection === "schere") {
     document.getElementById("resultText").textContent =
       "Es ist ein Unentschieden";
@@ -84,17 +94,18 @@ function PlayRound(playerSelection) {
 
 const reset = document.getElementById("reset");
 
-reset.addEventListener("click", resetFunc());
+reset.addEventListener("click", resetFunc);
 
 function resetFunc() {
   zaehlerPlayer = 0;
-
   zaehlerComputer = 0;
-
   document.getElementById("pointsPlayer").textContent = zaehlerPlayer;
   document.getElementById("pointsCpu").textContent = zaehlerComputer;
   document.getElementById("resultText").textContent =
     "Wählen Sie ein Symbol um zu beginnen";
+
+  let cpuChoiceDiv = document.getElementById("cpuChoice");
+  cpuChoiceDiv.innerHTML = "";
 }
 
 init();
